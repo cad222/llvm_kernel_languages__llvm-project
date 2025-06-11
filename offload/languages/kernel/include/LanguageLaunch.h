@@ -11,6 +11,7 @@
 
 #include "Types.h"
 #include "OffloadAPI.h"
+#include "ExportedAPI.h"
 #include <cstddef>
 #include <algorithm>
 

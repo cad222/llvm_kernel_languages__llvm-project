@@ -15,7 +15,6 @@
 #include <cstdio>
 #include <algorithm>
 
-namespace {
 struct CallConfigurationTy {
   dim3 GridSize;
   dim3 BlockSize;
@@ -24,7 +23,6 @@ struct CallConfigurationTy {
 };
 
 static thread_local CallConfigurationTy CC = {};
-} // namespace
 
 extern "C" {
 

@@ -17,7 +17,7 @@
 
 #include "LanguageRegistration.cpp"
 
-#include "LanguageLaunch.cpp"
+#include "LanguageLaunch.h"
 
 // Must be last as it introduces alises for some definitions from above.
 #include "LanguageAliases.h"

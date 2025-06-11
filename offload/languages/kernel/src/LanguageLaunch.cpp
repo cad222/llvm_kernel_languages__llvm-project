@@ -13,6 +13,7 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <algorithm>
 
 namespace {
 struct CallConfigurationTy {

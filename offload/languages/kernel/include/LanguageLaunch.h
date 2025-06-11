@@ -10,6 +10,7 @@
 #define LLVM_OFFLOAD_LANGUAGELAUNCH_H
 
 #include "Types.h"
+#include "OffloadAPI.h"
 #include <cstddef>
 
 #ifdef __cplusplus

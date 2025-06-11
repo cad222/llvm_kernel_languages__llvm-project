@@ -15,7 +15,7 @@
 
 #include "LanguageRuntime.cpp"
 
-#include "LanguageRegistration.cpp"
+#include "LanguageRegistration.h"
 
 #include "LanguageLaunch.h"
 

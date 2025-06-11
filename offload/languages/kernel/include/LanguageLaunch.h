@@ -34,7 +34,7 @@ struct LLVMOffloadKernelArgsTy {
   void *_;
 };
 
-inline unsigned llvmPushCallConfiguration(dim3 __grid_size, dim3 __block_size,
+unsigned llvmPushCallConfiguration(dim3 __grid_size, dim3 __block_size,
                                    size_t __shared_memory, void *__stream) {
   CallConfigurationTy &Kernel = CC;
   Kernel.GridSize = __grid_size;
@@ -44,7 +44,7 @@ inline unsigned llvmPushCallConfiguration(dim3 __grid_size, dim3 __block_size,
   return 0;
 }
 
-inline unsigned llvmPopCallConfiguration(dim3 *__grid_size, dim3 *__block_size,
+unsigned llvmPopCallConfiguration(dim3 *__grid_size, dim3 *__block_size,
                                   size_t *__shared_memory, void *__stream) {
   CallConfigurationTy &Kernel = CC;
   *__grid_size = Kernel.GridSize;
@@ -54,7 +54,7 @@ inline unsigned llvmPopCallConfiguration(dim3 *__grid_size, dim3 *__block_size,
   return 0;
 }
 
-inline ol_result_t llvmLaunchKernelImpl(const char *KernelID, dim3 GridDim,
+ol_result_t llvmLaunchKernelImpl(const char *KernelID, dim3 GridDim,
                                  dim3 BlockDim, void *KernelArgsPtr,
                                  size_t DynamicSharedMem, void *Stream,
                                  LLVMOffloadKernelArgsTy *LOKA) {

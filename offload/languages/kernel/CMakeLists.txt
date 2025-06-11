@@ -3,6 +3,7 @@ add_llvm_library(
 
   ../kernel/src/State.cpp
   ../kernel/src/ExportedAPI.cpp
+  ../kernel/src/LanguageLaunch.cpp
 
   LINK_COMPONENTS
   Support

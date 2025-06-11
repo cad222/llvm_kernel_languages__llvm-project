@@ -5,24 +5,16 @@
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
 //===----------------------------------------------------------------------===//
-//
-//===----------------------------------------------------------------------===//
 
+#include "LanguageLaunch.h"
 #include "ExportedAPI.h"
 #include "Types.h"
-
 #include "OffloadAPI.h"
 
 #include <cstdint>
 #include <cstdio>
 
 namespace {
-struct LLVMOffloadKernelArgsTy {
-  size_t Size;
-  void *Args;
-  void *_;
-};
-
 struct CallConfigurationTy {
   dim3 GridSize;
   dim3 BlockSize;
@@ -33,8 +25,6 @@ struct CallConfigurationTy {
 static thread_local CallConfigurationTy CC = {};
 } // namespace
 
-/// Hidden, but exported, Launch API
-///{
 extern "C" {
 
 unsigned llvmPushCallConfiguration(dim3 __grid_size, dim3 __block_size,
@@ -78,12 +68,6 @@ ol_result_t llvmLaunchKernelImpl(const char *KernelID, dim3 GridDim,
                                    : olKGetDefaultQueue();
 
   ol_result_t Result;
-  /// If LOKA is set, the kernel argument layout is known and already enforced
-  /// in LOKA->Args. Otherwise, indicate the plugins have to organize the
-  /// arguments themselves, as KernelArgsPtr is only an array of pointers to
-  /// arguments.
-  /// TODO: We should include APITypes.h and use
-  /// KernelLaunchParamsTy::UnknownSize instead of -1 below.
   if (LOKA)
     Result = olLaunchKernel(Queue, Device, Kernel, LOKA->Args, LOKA->Size,
                             &LaunchSizeArgs, nullptr);
@@ -108,5 +92,5 @@ ol_result_t llvmLaunchKernelImpl(const char *KernelID, dim3 GridDim,
 LLVM_STYLE_LAUNCH(, false);
 LLVM_STYLE_LAUNCH(_spt, true);
 LLVM_STYLE_LAUNCH(_ptsz, true);
-}
-///}
+
+} // extern "C"
